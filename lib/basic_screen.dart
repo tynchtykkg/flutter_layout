@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_layout/immutable_widget.dart';
+import 'package:flutter_layout/text_layout.dart';
 
 class BasicScreen extends StatelessWidget {
   const BasicScreen({super.key});
@@ -8,6 +9,7 @@ class BasicScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.indigo,
         title: const Text('Welcome to Flutter'),
         actions: const [
@@ -17,11 +19,40 @@ class BasicScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: const Center(
-        child: AspectRatio(
-          aspectRatio: 1,
-          child: ImmutableWidget(),
-        ),
+      body: Column(
+        children: [
+          const AspectRatio(
+            aspectRatio: 1,
+            child: ImmutableWidget(),
+          ),
+          const TextLayout(),
+          const Divider(),
+          RichText(
+            text: const TextSpan(
+              text: 'Flutter text is ',
+              style: TextStyle(fontSize: 22, color: Colors.black),
+              children: <TextSpan>[
+                TextSpan(
+                  text: 'really ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: 'powerful',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        decorationStyle: TextDecorationStyle.double,
+                        fontSize: 40,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       drawer: Drawer(
         child: Container(
